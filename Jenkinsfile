@@ -12,20 +12,21 @@ pipeline {
 	stages {
 		stage('Build') {
 			steps {
-				sh "mvn --version"
-				sh "docker version"
-				// sh "mvn clean package"
+				// sh "mvn --version"
+				// sh "docker version"
+				sh "mvn clean compile"
 			}
 		}
 		stage ('Unit Test') {
 			steps {
-				echo "Unit Test"
-				// sh "mvn test"
+				// echo "Unit Test"
+				sh "mvn test"
 			}
 		}
 		stage ('Integrateion Test') {
 			steps {
-				echo 'Integration Test'
+				// echo 'Integration Test'
+				sh "mvn failsafe:integration-test failsafe:verify"
 			}
 		}
 	}
